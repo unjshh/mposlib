@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="detailMap"
+            type="java.util.Map&lt;String,Object&gt;" />
+
+        <variable
+            name="itemMap"
+            type="java.util.Map&lt;String,Object&gt;" />
+        <variable
+            name="dataMap"
+            type="java.util.Map&lt;String,Object&gt;" />
+        <variable
+            name="controlMap"
+            type="java.util.Map&lt;String,Object&gt;" />
+        <variable
+            name="click"
+            type="com.cxycxx.mposcore.custom.OnRvItemClickListener" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</layout>
