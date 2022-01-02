@@ -1,7 +1,6 @@
-package com.dycx.p.core.util
+package com.cxycxx.mposcore.util
 
-import com.cxycxx.mposcore.util.GsonHelper
-import com.dycx.p.core.log.RLogger
+import com.cxycxx.mposcore.log.RLogger
 import com.google.gson.JsonObject
 import com.squareup.duktape.Duktape
 import java.lang.Exception
