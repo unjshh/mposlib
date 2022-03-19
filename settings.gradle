@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "mposlibs"
 include ':app'
 include ':mposcore'
+include ':EBG_AN00'
