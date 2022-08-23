@@ -17,7 +17,8 @@ class LogModel {
     var Key = ""//关键字
     var ClientIP = ""
     var WriterIP = ""
-    var ServiceURL = ""//接口地址
+    var ServiceUrl = ""//接口地址
+    var Tag = ""
 
     companion object {
         val DATE_FORMAT_DEFAULT = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")

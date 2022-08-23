@@ -3,31 +3,27 @@ package com.cxycxx.mposcore.util
 import android.os.Bundle
 import android.text.TextUtils
 import com.google.gson.*
-import java.io.Serializable
-import java.lang.Exception
+import org.json.JSONObject
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
-import com.google.gson.JsonObject
-
-import com.google.gson.JsonPrimitive
-
-import com.google.gson.JsonArray
-
-import com.google.gson.JsonElement
-
-import com.google.gson.JsonNull
-import org.json.JSONObject
 
 
 val GSON = Gson()
 
-object GsonHelper {
-    private fun toJsonElement(src: Any?): JsonElement? {
+object Gsoner {
+    /**
+     *
+     * @param src
+     * @return
+     */
+    fun toJsonElement(src: Any?): JsonElement {
         if (src == null) return JsonNull.INSTANCE
-        if (src is JsonElement) return src
+        if (src is JsonElement) {
+            return src
+        }
         if (src is Number) {
-            return JsonPrimitive(src as Number?)
+            return JsonPrimitive(src)
         }
         if (src.javaClass.isPrimitive) {
             return JsonPrimitive(src.toString())
@@ -39,74 +35,47 @@ object GsonHelper {
         }
         if (src is Map<*, *>) {
             val job = JSONObject(src)
-            return fromJson<JsonObject>(job.toString())
+            return GSON.fromJson(job.toString(), JsonObject::class.java)
         }
         if (src is String) {
-            val temp = fromJson<JsonObject>(src.toString())
-            return temp ?: JsonPrimitive(src.toString())
+            return try {
+                GSON.fromJson(src, JsonObject::class.java)
+            }catch(ex:Exception){
+                JsonPrimitive(src)
+            }
         }
-        return fromJson<JsonObject>(GSON.toJson(src))
+        if (src is Bundle) {
+            val rst = JsonObject()
+            for (p in src.keySet()) {
+                rst.add(p, toJsonElement(src[p]))
+            }
+            return rst
+        }
+        return GSON.fromJson(GSON.toJson(src), JsonObject::class.java)
     }
 
     /**
      * 把对象转换成JsonObject
      *
-     * @param scr 源
+     * @param src 源
      * @return JsonObject对象
      */
-    fun fromObject(scr: Any?): JsonObject {
-        if (scr == null) return JsonObject()
-        if (scr is Bundle) {
-            val result = JsonObject()
-            for (p in scr.keySet()) {
-                val value = scr[p] ?: continue
-                if (value is Long) {
-                    result.add(p, JsonPrimitive(value))
-                } else if (value is Float) {
-                    result.add(p, JsonPrimitive(value))
-                } else if (value is Int) {
-                    result.add(p, JsonPrimitive(value))
-                } else if (value is Double) {
-                    result.add(p, JsonPrimitive(value))
-                } else if (value is String || value!!.javaClass.isPrimitive) {
-                    result.add(p, JsonPrimitive(value.toString()))
-                } else if (value !is Bundle && value !is Serializable) {
-                    result.add(p, JsonPrimitive(value.toString()))
-                } else result.add(p, fromObject(value))
-            }
-            return result
-        } else if (scr is Map<*, *>) {
-            val result = JsonObject()
-            for (p in scr.keys) {
-                val value = scr[p] ?: continue
-                if (value is Long) {
-                    result.add(p.toString(), JsonPrimitive(value))
-                } else if (value is Float) {
-                    result.add(p.toString(), JsonPrimitive(value))
-                } else if (value is Int) {
-                    result.add(p.toString(), JsonPrimitive(value))
-                } else if (value is Double) {
-                    result.add(p.toString(), JsonPrimitive(value))
-                } else if (value is String || value!!.javaClass.isPrimitive) {
-                    result.add(p.toString(), JsonPrimitive(value.toString()))
-                } else if (value !is Bundle && value !is Serializable) {
-                    result.add(p.toString(), JsonPrimitive(value.toString()))
-                } else result.add(p.toString(), fromObject(value))
-            }
-            return result
+    fun fromObject(src: Any?): JsonObject {
+        if (src == null) return JsonObject()
+        if (src is JsonObject) {
+            return GSON.fromJson(src.toString(), JsonObject::class.java)
         }
-        return try {
-            fromJson(
-                (scr as? String)?.toString() ?: GSON.toJson(scr)
-            )
-        } catch (ex: Exception) {
-            JsonObject()
-        }
+        val je = toJsonElement(src)
+        return if (je is JsonObject) je else JsonObject()
     }
 
     /**json字符串转成T对象**/
-    inline fun <reified T> fromJson(json: String) = GSON.fromJson(json, T::class.java)
+    inline fun <reified T> fromJson(json: String): T = GSON.fromJson(json, T::class.java)
+
+    /**json字符串转成T对象**/
+    inline fun <reified T> fromJson(json: JsonElement): T = GSON.fromJson(json, T::class.java)
 }
+
 
 /**
  * 把json转换成map
@@ -224,14 +193,17 @@ fun JsonElement?.getJsonMember(memberPath: String? = ""): JsonElement? {
  * @param property
  * @return 异常时返回 0
  */
-fun JsonElement?.joAsBigDecimal(property: String? = ""): BigDecimal {
-    if (this == null || this.isJsonNull) return BigDecimal.ZERO
+fun JsonElement?.joAsBigDecimal(
+    property: String? = "",
+    dft: BigDecimal = BigDecimal.ZERO
+): BigDecimal {
+    if (this == null || this.isJsonNull) return dft
     try {
         if (TextUtils.isEmpty(property)) return this.asBigDecimal
         val obj = this.getJsonMember(property)
-        return if (obj == null) BigDecimal.ZERO else obj.asBigDecimal
+        return if (obj == null) dft else obj.asBigDecimal
     } catch (e: Exception) {
-        return BigDecimal.ZERO
+        return dft
     }
 }
 
