@@ -10,7 +10,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'android.com.cxycxx.ld_a8'
                 artifactId = 'ld_a8'
-                version = '1.0.7'
+                version = '1.0.0'
             }
         }
         repositories {
