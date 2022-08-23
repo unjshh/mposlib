@@ -12,7 +12,7 @@ import com.landicorp.android.eptapi.device.InnerScanner;
 import java.util.Calendar;
 
 /**
- *P990扫描器
+ *扫描器
  */
 public class PosScanner extends FBCommu {
 	public PosScanner(Context context, String taskId, OnFBCommuFinish dealer){
