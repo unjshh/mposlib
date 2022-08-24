@@ -3,7 +3,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            allowInsecureProtocol = true
+            url MY_MAVEN_URL+"/maven-public/"
+            credentials {
+                username MY_MAVEN_USER_NAME
+                password MY_MAVEN_PASSWORD
+            }
+        }
     }
 }
 rootProject.name = "mposlibs"

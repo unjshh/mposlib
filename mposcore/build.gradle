@@ -4,25 +4,26 @@ plugins {
     id 'kotlin-kapt'
     id 'maven-publish'
 }
+//发布时在Terminal执行  ./gradlew publish
 afterEvaluate {
     publishing {
         publications {
             maven(MavenPublication) {
                 from components.release
-                groupId = 'android.com.cxycxx.mposlibs'
-                artifactId = 'mposcore'
-                version = '1.0.7'
+                groupId = MY_MAVEN_PUB_GROUP_ID
+                artifactId = 'core'
+                version = '1.0.0'
             }
         }
         repositories {
             maven {
                 allowInsecureProtocol = true
-                def releaseUrl = 'http://81.69.255.191:8081/repository/maven-releases/'
-                def snapshotUrl = 'http://81.69.255.191:8081/repository/maven-snapshots/'
+                def releaseUrl = MY_MAVEN_URL+'/maven-releases/'
+                def snapshotUrl = MY_MAVEN_URL+'/maven-snapshots/'
                 url = version.contains("SNAPSHOT") ? snapshotUrl : releaseUrl
                 credentials {
-                    username 'admin'
-                    password '84982277'
+                    username MY_MAVEN_USER_NAME
+                    password MY_MAVEN_PASSWORD
                 }
             }
         }

@@ -4,14 +4,6 @@ buildscript {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            allowInsecureProtocol = true
-            url "http://81.69.255.191:8081/repository/maven-public/"
-            credentials {
-                username 'admin'
-                password '84982277'
-            }
-        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
