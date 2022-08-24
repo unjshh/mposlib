@@ -1,9 +1,9 @@
 package com.cxycxx.mposcore.util
 
-import com.cxycxx.mposcore.log.RLogger
+import android.text.TextUtils
+import com.cxycxx.mposcore.mpos.MposPub
 import com.google.gson.JsonObject
 import com.squareup.duktape.Duktape
-import java.lang.Exception
 
 object JsHelper {
     /**
@@ -13,19 +13,31 @@ object JsHelper {
      * @param js
      * @return 执行结果
      */
-    fun execJs(src: Any, js: String): Any? {
+    fun execJs(src: Any, keyCode: String, js: String, jsProName: String? = ""): Any? {
+        val log = JsonObject()
+        val jo = Gsoner.fromObject(src)
+        if (!TextUtils.isEmpty(jsProName)) {
+            log.addProperty("jsProName", jsProName)
+        }
+        log.add("req", GsonHelper.fromObject(src))
         return try {
-            val srcJson = when (src) {
-                is JsonObject -> src.toString()
-                else -> GsonHelper.fromObject(src).toString()
-            }
+            //---------
+            val srcJson = jo.toString()
             val exeJs = String.format("exeTrans(%s);", srcJson)
-            val duktape: Duktape = Duktape.create()
-            val res = duktape.evaluate(js + exeJs)
+            val duktape = Duktape.create()
+            val res = duktape.evaluate(
+                """
+                    $js
+                    $exeJs
+                    """.trimIndent()
+            )
             duktape.close()
+            log.add("res", GsonHelper.fromObject(res))
+            MposPub.clientLog(log, keyCode)
             res
         } catch (ex: Exception) {
-            RLogger.recordLog("执行JS异常：$ex", "exeJsTrans", "异常")
+            log.addProperty("exception", ex.toString())
+            MposPub.clientLog(log, keyCode)
             null
         }
     }
@@ -36,8 +48,8 @@ object JsHelper {
      * @param js
      * @return
      */
-    fun execJSO(src: Any, js: String): JsonObject {
-        val rst = execJs(src, js)
-        return GsonHelper.fromObject(rst)
+    fun execJSO(src: Any,keyCode: String, js: String): JsonObject {
+        val rst = execJs(src,keyCode, js)
+        return Gsoner.fromObject(rst)
     }
 }
