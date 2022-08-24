@@ -48,8 +48,8 @@ object JsHelper {
      * @param js
      * @return
      */
-    fun execJSO(src: Any,keyCode: String, js: String): JsonObject {
-        val rst = execJs(src,keyCode, js)
+    fun execJSO(src: Any, keyCode: String, js: String, jsProName: String? = ""): JsonObject {
+        val rst = execJs(src, keyCode, js, jsProName)
         return Gsoner.fromObject(rst)
     }
 }
