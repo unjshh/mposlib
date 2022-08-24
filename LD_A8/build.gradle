@@ -10,15 +10,13 @@ afterEvaluate {
                 from components.release
                 groupId = MY_MAVEN_DEIVCES_GROUP_ID
                 artifactId = 'ld_a8'
-                version = '1.0.2'
+                version = '1.0.3'
             }
         }
         repositories {
             maven {
                 allowInsecureProtocol = true
-                def releaseUrl = MY_MAVEN_URL+'/maven-releases/'
-                def snapshotUrl = MY_MAVEN_URL+'/maven-snapshots/'
-                url = version.contains("SNAPSHOT") ? snapshotUrl : releaseUrl
+                url = version.contains("SNAPSHOT") ? MY_MAVEN_SNAPSHOTS_URL : MY_MAVEN_RELEASES_URL
                 credentials {
                     username MY_MAVEN_USER_NAME
                     password MY_MAVEN_PASSWORD

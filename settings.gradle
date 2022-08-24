@@ -5,7 +5,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven {
             allowInsecureProtocol = true
-            url MY_MAVEN_URL+"/maven-public/"
+            url MY_MAVEN_PUBLIC_URL
             credentials {
                 username MY_MAVEN_USER_NAME
                 password MY_MAVEN_PASSWORD
