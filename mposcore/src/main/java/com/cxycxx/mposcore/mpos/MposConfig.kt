@@ -21,6 +21,11 @@ object MposConfig {
      */
     val vipModel get() = cfg.joAsString("vipModel")
 
+    /**
+     *ERP 类型
+     */
+    val erpType get() = cfg.joAsString("erpType")
+
     //关于【银行支付】的配置
     val payBankCfg get() = payCfg.getAsJsonObject("bank")
     val payBankTaskClass get() = payBankCfg.joAsString("taskClass")
