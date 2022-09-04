@@ -29,7 +29,7 @@ object MposConfig {
     /**
      *退货 类型
      */
-    val returnsModel get() = cfg.joAsString("returnsModel")
+    val returnModel get() = cfg.joAsString("returnModel")
 
     //关于【银行支付】的配置
     val payBankCfg get() = payCfg.getAsJsonObject("bank")
