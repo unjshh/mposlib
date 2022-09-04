@@ -26,6 +26,11 @@ object MposConfig {
      */
     val erpType get() = cfg.joAsString("erpType")
 
+    /**
+     *退货 类型
+     */
+    val returnsModel get() = cfg.joAsString("returnsModel")
+
     //关于【银行支付】的配置
     val payBankCfg get() = payCfg.getAsJsonObject("bank")
     val payBankTaskClass get() = payBankCfg.joAsString("taskClass")
