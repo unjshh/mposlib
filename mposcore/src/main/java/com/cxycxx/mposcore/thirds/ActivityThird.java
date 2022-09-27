@@ -56,7 +56,7 @@ public class ActivityThird extends FBCommu {
         if (Util.isEmpty(Util.joAsString(req, "methodName")))
             req.addProperty("methodName", "ActivityThird");
         req.addProperty("step", "请求转化");
-        req.addProperty("keyCode", "回应翻译");
+        req.addProperty("keyCode", "请求转化");
         HttpTask.launch2(mContext, req, "请求转化", (reqPara, t1) -> {
             String action = Util.joAsString(reqPara, "action");
             String uri = Util.joAsString(reqPara, "uri");
