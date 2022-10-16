@@ -42,7 +42,7 @@ public class RvBindAdapter<T> extends RecyclerView.Adapter<RvBindAdapter.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RvBindAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.getBinding().setVariable(variableId, list.get(i));
+        viewHolder.getBinding().setVariable(variableId, getItem(i));
         if (listener != null) viewHolder.getBinding().setVariable(clickVariableId, listener);
     }
 
@@ -62,7 +62,7 @@ public class RvBindAdapter<T> extends RecyclerView.Adapter<RvBindAdapter.ViewHol
      * @return
      */
     public T getItem(int position) {
-        if (list == null || position < 0 || list.size() <= position) return null;
+        if (list == null || position < 0 || getItemCount() <= position) return null;
         return list.get(position);
     }
 

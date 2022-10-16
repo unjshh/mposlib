@@ -77,7 +77,7 @@ public class LvBindAdapter<T> extends BaseAdapter {
         } else {
             binding = DataBindingUtil.getBinding(convertView);
         }
-        binding.setVariable(variableId, list.get(position));
+        binding.setVariable(variableId, getItem(position));
         if (listener != null) binding.setVariable(clickVariableId, listener);
         return binding.getRoot();
     }

@@ -12,7 +12,7 @@ afterEvaluate {
                 from components.release
                 groupId = MY_MAVEN_PUB_GROUP_ID
                 artifactId = 'core'
-                version = '1.0.6'
+                version = '1.0.7'
             }
         }
         repositories {
