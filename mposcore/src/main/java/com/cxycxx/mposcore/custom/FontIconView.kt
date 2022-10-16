@@ -3,9 +3,9 @@ package com.cxycxx.mposcore.custom
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
+import android.widget.TextView
 
-class FontIconView : AppCompatTextView {
+class FontIconView : TextView {
     constructor(context: Context) : super(context) {
         init(context)
     }
