@@ -79,7 +79,7 @@ object Gsoner {
 /**
  * 为了JsonObject能使用[]操作符
  */
-fun JsonObject?.set(property: String?, element: JsonElement?) {
+operator fun JsonObject?.set(property: String?, element: JsonElement?) {
     if (this == null || element == null || property == null || property.isBlank()) return
     this.add(property, element)
 }
