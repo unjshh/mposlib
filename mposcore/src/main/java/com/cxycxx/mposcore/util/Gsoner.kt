@@ -40,7 +40,7 @@ object Gsoner {
         if (src is String) {
             return try {
                 GSON.fromJson(src, JsonObject::class.java)
-            }catch(ex:Exception){
+            } catch (ex: Exception) {
                 JsonPrimitive(src)
             }
         }
@@ -76,6 +76,13 @@ object Gsoner {
     inline fun <reified T> fromJson(json: JsonElement): T = GSON.fromJson(json, T::class.java)
 }
 
+/**
+ * 为了JsonObject能使用[]操作符
+ */
+fun JsonObject?.set(property: String?, element: JsonElement?) {
+    if (this == null || element == null || property == null || property.isBlank()) return
+    this.add(property, element)
+}
 
 /**
  * 把json转换成map
