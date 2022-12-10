@@ -79,7 +79,7 @@ object Gsoner {
 
     /**json字符串转成T对象**/
     inline fun <reified T> fromJson(json: JsonElement?): T? = try {
-        if (json == null) null
+        if (json == null || json == JsonNull.INSTANCE) null
         else GSON.fromJson(json, T::class.java)
     } catch (ex: Exception) {
         null
