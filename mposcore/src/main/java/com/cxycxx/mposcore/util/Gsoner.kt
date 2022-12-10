@@ -70,10 +70,18 @@ object Gsoner {
     }
 
     /**json字符串转成T对象**/
-    inline fun <reified T> fromJson(json: String): T = GSON.fromJson(json, T::class.java)
+    inline fun <reified T> fromJson(json: String): T? = try {
+        GSON.fromJson(json, T::class.java)
+    } catch (ex: Exception) {
+        null
+    }
 
     /**json字符串转成T对象**/
-    inline fun <reified T> fromJson(json: JsonElement): T = GSON.fromJson(json, T::class.java)
+    inline fun <reified T> fromJson(json: JsonElement): T? = try {
+        GSON.fromJson(json, T::class.java)
+    } catch (ex: Exception) {
+        null
+    }
 }
 
 /**
