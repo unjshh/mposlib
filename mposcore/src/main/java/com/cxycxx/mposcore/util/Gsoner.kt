@@ -25,6 +25,9 @@ object Gsoner {
         if (src is Number) {
             return JsonPrimitive(src)
         }
+        if (src is Boolean) {
+            return JsonPrimitive(src)
+        }
         if (src.javaClass.isPrimitive) {
             return JsonPrimitive(src.toString())
         }

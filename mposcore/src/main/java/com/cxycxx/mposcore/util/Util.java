@@ -184,6 +184,8 @@ public final class Util {
                     result.add(p, new JsonPrimitive(val.toString()));
                 else if (val instanceof Long)
                     result.add(p, new JsonPrimitive((long) val));
+                else if (val instanceof Boolean)
+                    result.add(p, new JsonPrimitive((boolean) val));
                 else if (!(val instanceof Bundle) && !(val instanceof Serializable))
                     result.add(p, new JsonPrimitive(val.toString()));
                 else result.add(p, fromObject(val));
