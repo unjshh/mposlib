@@ -1,5 +1,6 @@
 package com.cxycxx.mposcore.http;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
@@ -41,6 +42,7 @@ public class HttpTask extends FBCommu {
     private String tempServiceUri = "";//临时服务器URL
     private boolean islog = true;//是否记日志
     private boolean needShowWaitDialog = true;//是否需要等待框
+    private Dialog waitDialog;
     private static final int DEFAULT_TIMEOUT = 120;
     private Runnable mFinally;
 

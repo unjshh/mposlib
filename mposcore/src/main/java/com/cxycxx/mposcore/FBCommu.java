@@ -25,6 +25,16 @@ public abstract class FBCommu {
      */
     public static final int ALWAYS_CALLBACK = 3;
 
+    public boolean isWaitDialogCancelable() {
+        return isWaitDialogCancelable;
+    }
+
+    public void setWaitDialogCancelable(boolean waitDialogCancelable) {
+        isWaitDialogCancelable = waitDialogCancelable;
+    }
+
+    private boolean isWaitDialogCancelable = true;
+
     /**
      * @param dealer  接收处理者，如果不接收可以为null(比如只输出的情况下)
      * @param taskId  任务id
@@ -89,7 +99,10 @@ public abstract class FBCommu {
      */
     public void showWaitDialog(String hint) {
         if (mContext == null) return;
-        if (mWaitDialog == null) mWaitDialog = new ProgressDialog(mContext);
+        if (mWaitDialog == null) {
+            mWaitDialog = ProgressDialog.show(mContext, "", Util.isEmpty(hint) ? mWaitHint : hint.trim(), false, isWaitDialogCancelable);
+            return;
+        }
         if (mWaitDialog.isShowing()) return;
         mWaitDialog.setMessage(Util.isEmpty(hint) ? mWaitHint : hint.trim());
         mWaitDialog.show();
