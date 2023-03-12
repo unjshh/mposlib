@@ -348,12 +348,14 @@ open class TopBarActivity : AppCompatActivity(), OnRvItemClickListener, View.OnC
     protected fun rebindControl() {
         binding?.setVariable(BR.controlMap, controlMap)
     }
+
     fun toastMsg(msg: String?) {
         if (TextUtils.isEmpty(msg)) return
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onItemClick(view: View?, item: Any?, type: Int) {
+    override fun onItemClick(view: View?, item: Any?, type: Int): Boolean {
+        return true
     }
 
     override fun onClick(v: View?) {
