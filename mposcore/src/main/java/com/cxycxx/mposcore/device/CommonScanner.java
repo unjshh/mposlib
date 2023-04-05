@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -35,9 +36,16 @@ public class CommonScanner extends FBCommu {
             ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_CAMERA);
             return;
         }
+        int requestCode = Constant.REQ_QR_CODE;
+        if (TextUtils.isDigitsOnly(mTaskId)) {
+            try {
+                requestCode = Integer.parseInt(mTaskId);
+            } catch (Exception ignored) {
+            }
+        }
         // 二维码扫码
         Intent intent = new Intent(mContext, CaptureActivity.class);
-        ((Activity) mContext).startActivityForResult(intent, Constant.REQ_QR_CODE);
+        ((Activity) mContext).startActivityForResult(intent, requestCode);
     }
 
     @Override
