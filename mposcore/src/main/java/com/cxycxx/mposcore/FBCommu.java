@@ -138,10 +138,6 @@ public abstract class FBCommu {
             return;
         }
         if (mDealer == null) return;
-        if (!"成功".equals(Util.joAsString(response,"result"))) {
-            errCallbackDealer(response.has("message")?Util.joAsString(response,"message"):response.toString());
-            return;
-        }
         mDealer.onFBCommuFinish(response, mTaskId);
     }
 
