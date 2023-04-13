@@ -12,7 +12,13 @@ import java.lang.reflect.Method;
  */
 public class ScreenUtil {
     private ScreenUtil() {}
-
+    /**
+     * 将dp值转为px值
+     */
+    public static int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
     /**
      * 获取状态栏高度
      */

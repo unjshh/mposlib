@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workplace/mpos-libs/mposcore/src/main/res/drawable/core_press_circle_grey.xml" value="0.1" />
+        <entry key="..\:/workplace/mpos-libs/mposcore/src/main/res/layout/core_bind_holder.xml" value="0.17916666666666667" />
+        <entry key="..\:/workplace/mpos-libs/mposcore/src/main/res/layout/core_top_bar.xml" value="0.17916666666666667" />
         <entry key="..\:/workplace/mposlibs/mposcore/src/main/res/drawable/core_press_circle_grey.xml" value="0.4627170582226762" />
         <entry key="..\:/workplace/mposlibs/mposcore/src/main/res/layout/core_bind_holder.xml" value="0.4515625" />
         <entry key="..\:/workplace/mposlibs/mposcore/src/main/res/layout/core_top_bar.xml" value="0.4515625" />
