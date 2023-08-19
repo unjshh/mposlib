@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cxycxx.icbcsmartpos">
+
+    <permission
+        android:name="com.icbc.smartpos.bankapp"
+        android:protectionLevel="dangerous" />
+
+    <uses-permission android:name="com.icbc.smartpos.bankapp" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.multiPurchase" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.inquery" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.integralQuery" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.posVoid" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.refund" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.integralRefund" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.qrRefund" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.preauth" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.addPreauth" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.preauthEnd" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.preauthVoid" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.queryTransRec" />
+
+    <uses-permission android:name="com.icbc.smartpos.bankpay.advance.additionalPrint" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.advance.privateInfo" />
+
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.terminalInfo" />
+    <uses-permission android:name="com.icbc.smartpos.bankpay.trans.reprint" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+    </application>
+
+</manifest>
