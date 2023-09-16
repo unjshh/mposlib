@@ -8,11 +8,11 @@ import android.view.KeyEvent;
 import com.annimon.stream.function.Consumer;
 
 /**
- * 自定义扫码枪---密码键盘刷卡器工具类
+ * 外接工具类
  */
-public class ScanGunHelper {
-    public static final String CLASS_NAME = "ScanGun";
-    private static volatile ScanGunHelper mInstance;
+public class ExternalDeviceHelper {
+    public static final String CLASS_NAME = "ExternalDevice";
+    private static volatile ExternalDeviceHelper mInstance;
     private final static long MESSAGE_DELAY = 500; //延迟500ms，判断扫码是否完成。
     private StringBuffer mStringBufferResult;//扫码内容 private boolean mCaps; //大小写区分
     private Handler mHandler;//
@@ -20,17 +20,17 @@ public class ScanGunHelper {
     private Consumer<String> mOnScanSuccessListener;
     private boolean mCaps = false;//大小写区分
 
-    private ScanGunHelper() {
+    private ExternalDeviceHelper() {
         mStringBufferResult = new StringBuffer();
         mHandler = new Handler();
         mScanningFishedRunnable = this::performScanSuccess;
     }
 
-    public static ScanGunHelper getInstance() {
+    public static ExternalDeviceHelper getInstance() {
         if (null == mInstance) {
-            synchronized (ScanGunHelper.class) {
+            synchronized (ExternalDeviceHelper.class) {
                 if (null == mInstance) {
-                    mInstance = new ScanGunHelper();
+                    mInstance = new ExternalDeviceHelper();
                 }
             }
         }
@@ -61,7 +61,7 @@ public class ScanGunHelper {
      * 扫码枪事件解析
      */
     public void analysisKeyEvent(KeyEvent event, Consumer<String> listener) {
-        if (!isScanGunEvent(event)) {
+        if (!isExternalDeviceEvent(event)) {
             return;
         }
         //Virtual是我所使用机器的内置软键盘的名字
@@ -144,7 +144,7 @@ public class ScanGunHelper {
     /**
      * 是否为扫码枪事件(部分机型KeyEvent获取的名字错误)
      */
-    private boolean isScanGunEvent(KeyEvent event) {
+    private boolean isExternalDeviceEvent(KeyEvent event) {
         return isInputDeviceExist(event.getDevice().getName());
     }
 }
