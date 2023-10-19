@@ -73,8 +73,11 @@ object Gsoner {
     }
 
     /**json字符串转成T对象**/
+    inline fun <reified T> cloneObject(src: Any): T? = fromJson<T>(toJsonElement(src))
+
+    /**json字符串转成T对象**/
     inline fun <reified T> fromJson(json: String?): T? = try {
-        if (json == null || json.isBlank()) null
+        if (json.isNullOrBlank()) null
         else GSON.fromJson(json, T::class.java)
     } catch (ex: Exception) {
         null
@@ -87,6 +90,7 @@ object Gsoner {
     } catch (ex: Exception) {
         null
     }
+
 }
 
 /**
