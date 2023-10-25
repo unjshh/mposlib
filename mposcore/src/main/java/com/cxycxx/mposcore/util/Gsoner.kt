@@ -180,6 +180,12 @@ fun JsonElement?.joAsString(property: String? = ""): String {
 }
 
 /**
+ * 转化成对象
+ */
+inline fun <reified T> JsonElement?.joAsT(memberPath: String? = ""): T? =
+    Gsoner.fromJson(this.getJsonMember(memberPath))
+
+/**
  * 获取json属性
  *
  * @param src        资源

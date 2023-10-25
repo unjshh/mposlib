@@ -1,9 +1,8 @@
-package com.cxycxx.room.entities
+package com.cxycxx.mposcore.room.entities
 
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.cxycxx.mposcore.mpos.MposPub
 
 /**
  * 交易记录
@@ -47,7 +46,7 @@ class TradeRecord {
     /**
      * 关联的款台号
      */
-    val deviceCode get() = MposPub.deviceType
+    var deviceCode=""
 
     /**
      * 关联的小票号

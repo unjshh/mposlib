@@ -1,9 +1,9 @@
-package com.cxycxx.room
+package com.cxycxx.mposcore.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.cxycxx.mposcore.room.daos.TradeRecordDao
-import com.cxycxx.room.entities.TradeRecord
+import com.cxycxx.mposcore.room.entities.TradeRecord
 
 /**
  * 数据库
