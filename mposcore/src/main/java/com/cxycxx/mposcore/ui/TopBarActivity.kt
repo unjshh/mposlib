@@ -21,9 +21,11 @@ import com.cxycxx.mposcore.custom.OnRvItemClickListener
 import com.cxycxx.mposcore.util.GSON
 import com.cxycxx.mposcore.util.toMap
 import com.google.gson.JsonObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 import java.util.HashMap
 
-open class TopBarActivity : AppCompatActivity(), OnRvItemClickListener, View.OnClickListener {
+open class TopBarActivity : AppCompatActivity(), OnRvItemClickListener, View.OnClickListener , CoroutineScope by MainScope() {
     val DETAIL = "detail"
     protected var binding: ViewDataBinding? = null
     protected val detailMap: MutableMap<String, Any> = HashMap()
