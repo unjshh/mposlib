@@ -10,7 +10,8 @@ object JsHelper {
      * 执行Js
      *
      * @param src 传入的参数
-     * @param js
+     * @param js js内容
+     * @param jsProName js文件名
      * @return 执行结果
      */
     fun execJs(src: Any, keyCode: String, js: String, jsProName: String? = ""): Any? {
