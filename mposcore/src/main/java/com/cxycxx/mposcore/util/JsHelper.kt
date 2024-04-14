@@ -14,6 +14,7 @@ object JsHelper {
      * @param jsProName js文件名
      * @return 执行结果
      */
+    @JvmStatic
     fun execJs(src: Any, keyCode: String, js: String, jsProName: String? = ""): Any? {
         val log = JsonObject()
         val jo = Gsoner.fromObject(src)
@@ -49,6 +50,7 @@ object JsHelper {
      * @param js
      * @return
      */
+    @JvmStatic
     fun execJSO(src: Any, keyCode: String, js: String, jsProName: String? = ""): JsonObject {
         val rst = execJs(src, keyCode, js, jsProName)
         return Gsoner.fromObject(rst)
