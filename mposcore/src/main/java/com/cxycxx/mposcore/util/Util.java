@@ -702,7 +702,18 @@ public final class Util {
         InputMethodManager imm = (InputMethodManager) et.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
     }
-
+    /**
+     * 隐藏输入法
+     * @param activity
+     */
+    public static void hideSoftInputFromWindow(Activity activity) {
+        if(activity==null)return;
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        View view = activity.getCurrentFocus();
+        if (view == null) return;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
     /**
      * Inflate a new view hierarchy from the specified xml resource
      *
