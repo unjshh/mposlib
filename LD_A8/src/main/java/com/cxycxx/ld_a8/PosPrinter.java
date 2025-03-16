@@ -2,6 +2,7 @@ package com.cxycxx.ld_a8;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.cxycxx.mposcore.FBCommu;
 import com.cxycxx.mposcore.OnFBCommuFinish;
@@ -65,6 +66,8 @@ public class PosPrinter extends FBCommu {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     printer.printImage(0, 384, 200, baos.toByteArray());
+
+
                 }
 
                 @Override

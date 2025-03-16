@@ -8,19 +8,9 @@ afterEvaluate {
         publications {
             maven(MavenPublication) {
                 from components.release
-                groupId = MY_MAVEN_DEIVCES_GROUP_ID
-                artifactId = 'n900'
+                groupId = 'com.github.unjshh.mposlibs'
+                artifactId = 'devices.n900'
                 version = '1.0.0'
-            }
-        }
-        repositories {
-            maven {
-                allowInsecureProtocol = true
-                url = version.contains("SNAPSHOT") ? MY_MAVEN_SNAPSHOTS_URL : MY_MAVEN_RELEASES_URL
-                credentials {
-                    username MY_MAVEN_USER_NAME
-                    password MY_MAVEN_PASSWORD
-                }
             }
         }
     }
@@ -72,5 +62,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'android.com.cxycxx.mposlibs.pub:core:1.1.8'//MPOS公共库
+    implementation project(path: ':mposcore')//MPOS公共库
 }

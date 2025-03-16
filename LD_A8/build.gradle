@@ -8,19 +8,9 @@ afterEvaluate {
         publications {
             maven(MavenPublication) {
                 from components.release
-                groupId = MY_MAVEN_DEIVCES_GROUP_ID
-                artifactId = 'ld_a8'
+                groupId = 'com.github.unjshh.mposlibs'
+                artifactId = 'devices.ld_a8'
                 version = '1.0.3'
-            }
-        }
-        repositories {
-            maven {
-                allowInsecureProtocol = true
-                url = version.contains("SNAPSHOT") ? MY_MAVEN_SNAPSHOTS_URL : MY_MAVEN_RELEASES_URL
-                credentials {
-                    username MY_MAVEN_USER_NAME
-                    password MY_MAVEN_PASSWORD
-                }
             }
         }
     }
@@ -68,9 +58,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.4.0'
-//    implementation project(path: ':mposcore')
+    implementation project(path: ':mposcore')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'android.com.cxycxx.mposlibs.pub:core:1.0.0'//MPOS公共库
 }
