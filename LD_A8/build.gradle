@@ -23,11 +23,11 @@ task deploy {
 //    tasks.generatePomFileForMavenPublication.mustRunAfter(tasks.build)
 }
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 29
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

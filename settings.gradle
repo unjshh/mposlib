@@ -3,20 +3,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven {
-            allowInsecureProtocol = true
-            url MY_MAVEN_PUBLIC_URL
-            credentials {
-                username MY_MAVEN_USER_NAME
-                password MY_MAVEN_PASSWORD
-            }
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "mposlibs"
 include ':app'
 include ':mposcore'
-include ':EBG_AN00'
+//include ':EBG_AN00'
 include ':LD_A8'
 include ':N910'
 include ':N900'
