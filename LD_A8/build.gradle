@@ -24,7 +24,7 @@ task deploy {
 }
 android {
     compileSdk 34
-
+    namespace 'com.cxycxx.ld_a8'
     defaultConfig {
         minSdk 21
         targetSdk 29
